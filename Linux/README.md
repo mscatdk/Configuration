@@ -1,0 +1,77 @@
+# Linux
+This page contain Linux related information.
+## Proxy
+The CLI proxy is configured by setting the following environment variables
+```bash
+export http_proxy="http://user:password@host:port"
+export https_proxy="http://user:password@host:port"
+```
+
+### Dynamic Socket
+A dynamic socket proxy can be created using SSH as follows:
+````bash
+ssh -D 8080 name@myserver.com
+export http_proxy=socks5://127.0.0.1:8080
+export https_proxy=socks5://127.0.0.1:8080
+````
+### Default Gateway
+The default gateway is set using one of the following commands:
+````bash
+ip route add default via 192.168.1.254
+route add default gw {IP-ADDRESS} {INTERFACE-NAME}
+````
+
+## netstat
+Find process listening on a specific port:
+
+````bash
+netstat -tulpn
+````
+
+## Random data service for virtual machines
+The rng-tools package can be installed as follows:
+````bash
+apt-get install rng-tools
+````
+Next open /etc/default/rng-tools...
+
+````bash
+vi /etc/default/rng-tools
+````
+... and add the line HRNGDEVI
+
+Now start the rng-tools daemon:
+````bash
+/etc/init.d/rng-tools start
+````
+## SSH
+
+### SSH private key authentication
+Create the SSH public and private key pair using the command on the client:
+````bash
+ssh-keygen -t rsa
+````
+Run the following command to append the key to the authorized_keys file on the server.
+````bash
+cat .ssh/id_rsa.pub | ssh userName@ServerIP 'cat >> .ssh/authorized_keys'
+````
+### Xauth
+Get the keys and x-server adresse by running:
+
+````bash
+xauth list|grep uname -n echo $DISPLAY
+````
+And the xauth keys and set DISPLAY using the commands
+````bash
+xauth add $DISPLAY . hexkey
+export DISPLAY=localhost:10.0
+````
+
+## Install Java 8
+Run the following commands:
+````bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+````
