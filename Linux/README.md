@@ -1,5 +1,12 @@
 # Linux
 This page contain Linux related information.
+
+## Find command
+Delete all files older than 1 day
+```bash
+find /path/to/files* -mtime +1 -exec rm {} \;
+```
+
 ## Proxy
 The CLI proxy is configured by setting the following environment variables
 ```bash
