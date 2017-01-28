@@ -1,15 +1,19 @@
 # Java
 
-## Maven
-
-### Download from NEXUS repository
+## Add internal Certificate Authority (CA) to Java trust
 ````bash
-wget -O /tmp/servlet3.war "http://127.0.0.1:8081/nexus/service/local/artifact/maven/redirect?r=snapshots&g=com.msc.web&a=servlet3&v=0.0.1-SNAPSHOT&p=war"
+# List CA's 
+keytool -keystore "$JAVA_HOME\jre\lib\security\cacerts" -storepass changeit -list
+
+# Add CA to trust
+keytool -import -alias susan -file Example.cer -keystore exampleraystore
+
+# Test SSL connection (https://confluence.atlassian.com/kb/files/779355358/779355357/1/1441897666313/SSLPoke.class)
+java SSLPoke [hostname] 443
 ````
+## WebLogic
 
-### WebLogic
-
-#### Build WebLogic full client
+### Build WebLogic full client
 
 Use the following steps to create a wlfullclient.jar file for a JDK 1.7 client application:
 
@@ -27,3 +31,10 @@ java -jar wljarbuilder.jar
 mvn install:install-file -Dfile=<path-to-file>
 
 source: https://docs.oracle.com/cd/E24329_01/web.1211/e24378/jarbuilder.htm#SACLT239
+
+# Maven
+
+## Download from NEXUS repository
+````bash
+wget -O /tmp/servlet3.war "http://127.0.0.1:8081/nexus/service/local/artifact/maven/redirect?r=snapshots&g=com.msc.web&a=servlet3&v=0.0.1-SNAPSHOT&p=war"
+````
