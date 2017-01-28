@@ -1,6 +1,21 @@
 # Linux
 This page contain Linux related information.
 
+## htpasswd
+Create file and add user demo
+```bash
+htpasswd -c /path/to/file/.htpasswd demo
+```
+Add or update password for user demo
+```bash
+htpasswd /path/to/file/.htpasswd demo
+```
+
+Remove user demo from file
+```bash
+htpasswd -D /path/to/file/.htpasswd demo
+```
+
 ## Find command
 Delete all files older than 1 day
 ```bash
