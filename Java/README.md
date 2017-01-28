@@ -1,6 +1,6 @@
 # Java
 
-## Add internal Certificate Authority (CA) to Java trust
+### Add internal Certificate Authority (CA) to Java trust
 ````bash
 # List CA's 
 keytool -keystore "$JAVA_HOME\jre\lib\security\cacerts" -storepass changeit -list
