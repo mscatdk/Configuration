@@ -93,7 +93,6 @@ export DISPLAY=localhost:10.0
 Run the following commands:
 ````bash
 sudo add-apt-repository ppa:webupd8team/java
-sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
 ````
