@@ -22,6 +22,20 @@ Delete all files older than 1 day
 find /path/to/files* -mtime +1 -exec rm {} \;
 ```
 
+## Network
+###Gateway
+The default gateway can be configured using the following command
+```bash
+sudo route add default gw [IP Address] [Adapter]
+```
+One example could be sudo route add default gw 192.168.1.254 eth0
+
+### DNS
+The DNS server can be configured by updating /etc/resolv.conf. The file may get overwritten on some systems by the network configuration manager.
+```bash
+nameserver 8.8.8.8
+```
+
 ## Proxy
 The CLI proxy is configured by setting the following environment variables
 ```bash
