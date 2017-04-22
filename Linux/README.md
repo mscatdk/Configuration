@@ -23,7 +23,7 @@ find /path/to/files* -mtime +1 -exec rm {} \;
 ```
 
 ## Network
-###Gateway
+### Gateway
 The default gateway can be configured using the following command
 ```bash
 sudo route add default gw [IP Address] [Adapter]
