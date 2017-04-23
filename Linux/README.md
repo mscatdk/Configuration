@@ -122,3 +122,25 @@ Get back to text mode by typing
 ````bash
 :%!xxd -r
 ````
+
+## User and groups
+### Users
+````bash
+#Create a user with a specific home directory
+useradd -m -d /home/directory [username]
+
+#Add existing user to group
+usermod -G [group name] [username]
+
+#Change users default shell
+usermod -s /usr/bin/git-shell [username]
+````
+
+### Groups
+````bash
+#Create group
+groupadd [group name]
+
+#Delete group
+groupdel [group name]
+````
