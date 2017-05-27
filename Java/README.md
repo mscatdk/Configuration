@@ -2,14 +2,19 @@
 
 ### Add internal Certificate Authority (CA) to Java trust
 ````bash
-# List CA's 
+# List CA's
 keytool -keystore "$JAVA_HOME\jre\lib\security\cacerts" -storepass changeit -list
 
-# Add CA to trust
-keytool -import -alias susan -file Example.cer -keystore exampleraystore
+# Add CA to trust (this command will also create a new trust store)
+keytool -import -alias susan -file Example.cer -keystore myTrustStore
 
-# Test SSL connection (https://confluence.atlassian.com/kb/files/779355358/779355357/1/1441897666313/SSLPoke.class)
-java SSLPoke [hostname] 443
+# Test SSL connection (Source: https://github.com/mscatdk/java/tree/master/SSLShake)
+java -jar SSLShake [hostname] 443
+
+# Trust store and password can be specified as follows
+java -Djavax.net.ssl.trustStore=myTrustStore -Djavax.net.ssl.trustStorePassword=demodemo -jar SSLShake [hostname] 443
+
+The trustStore password is needed to add new trust entries to the keystore and validate the integrity of the keystore. The trustStore password should be protected.
 ````
 ## WebLogic
 
