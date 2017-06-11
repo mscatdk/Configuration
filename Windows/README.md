@@ -22,3 +22,9 @@ Kill a process (here the process with PID 123)
 ```bash
 taskkill /F /PID 123
 ```
+
+## DNS
+Clear DNS cache
+```bash
+ipconfig /flushdns
+```
