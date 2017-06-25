@@ -9,7 +9,7 @@ keytool -keystore "$JAVA_HOME\jre\lib\security\cacerts" -storepass changeit -lis
 keytool -import -alias susan -file Example.cer -keystore myTrustStore
 
 # Test SSL connection (Source: https://github.com/mscatdk/java/tree/master/SSLShake)
-java -jar SSLShake [hostname] 443
+java -jar SSLShake [hostname] [port]
 
 # Trust store and password can be specified as follows
 java -Djavax.net.ssl.trustStore=myTrustStore -Djavax.net.ssl.trustStorePassword=demodemo -jar SSLShake [hostname] 443
