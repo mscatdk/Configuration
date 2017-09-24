@@ -28,3 +28,12 @@ Clear DNS cache
 ```bash
 ipconfig /flushdns
 ```
+
+## Manual install JDK
+1. Download JDK installation file from Oracle
+2. Open the *.exe using e.g. 7z
+3. Locate the tool.zip file in a path similar to \.rsrc\1033\JAVA_CAB10\111\
+4. Extract the content of tool.zip to desired JDK location
+5. Run the below command from the new JDK location 
+    a. for /r %x in (*.pack) do .\bin\unpack200 -r "%x" "%~dx%~px%~nx.jar"
+6. The JDK can now be zip and distributed if needed

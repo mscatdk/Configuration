@@ -144,3 +144,12 @@ groupadd [group name]
 #Delete group
 groupdel [group name]
 ````
+
+## strace
+````bash
+#Monitor exisitng process with PID=$PID
+strace -p $PID -f -e trace=network -s 10000
+
+#strace with selected calls
+strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait -p $PID
+````
