@@ -37,3 +37,7 @@ ipconfig /flushdns
 5. Run the below command from the new JDK location 
     a. for /r %x in (*.pack) do .\bin\unpack200 -r "%x" "%~dx%~px%~nx.jar"
 6. The JDK can now be zip and distributed if needed
+
+## Ad groups
+wildcard search can be done using the tool
+"C:\Windows\System32\rundll32.exe" dsquery.dll,OpenQueryWindow
