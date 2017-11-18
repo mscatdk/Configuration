@@ -16,6 +16,15 @@ java -Djavax.net.ssl.trustStore=myTrustStore -Djavax.net.ssl.trustStorePassword=
 
 The trustStore password is needed to add new trust entries to the keystore and validate the integrity of the keystore. The trustStore password should be protected.
 ````
+
+## Class loader
+This Section is dedicated to topics related to the class loader.
+### Logging
+Class loader logging can be enabled by adding the below JVM option. This will allow you to identify the source for all classes loaded. A log entry will be created each time a class is loaded including origin and full class name. The log will only go to std out.
+````bash
+-verbose:class
+````
+
 ## WebLogic
 
 ### Build WebLogic full client
