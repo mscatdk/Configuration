@@ -134,6 +134,9 @@ usermod -G [group name] [username]
 
 #Change users default shell
 usermod -s /usr/bin/git-shell [username]
+
+#Lock account
+passwd -l [username]
 ````
 
 ### Groups
