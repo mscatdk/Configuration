@@ -148,6 +148,18 @@ groupadd [group name]
 groupdel [group name]
 ````
 
+## tcpdump
+````bash
+#Listen on localhost
+sudo tcpdump -i lo
+
+#Listen on interface with mac package size
+tcpdump -i <interface> -s 65535 -w <some-file>
+
+#Read pcap file
+tcpdump -qns 0 -X -r file.pcap
+````
+
 ## strace
 ````bash
 #Monitor exisitng process with PID=$PID
