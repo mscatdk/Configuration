@@ -168,3 +168,9 @@ strace -p $PID -f -e trace=network -s 10000
 #strace with selected calls
 strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait -p $PID
 ````
+
+## cURL
+````bash
+#cURL using e.g. tor proxy assuming it's running on 9150
+curl --socks5-hostname localhost:9150 https://check.torproject.org
+````
