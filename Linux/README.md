@@ -174,3 +174,9 @@ strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait 
 #cURL using e.g. tor proxy assuming it's running on 9150
 curl --socks5-hostname localhost:9150 https://check.torproject.org
 ````
+
+## Fail2ban
+````bash
+#Get Status
+sudo fail2ban-client status ssh
+````
