@@ -175,6 +175,12 @@ strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait 
 curl --socks5-hostname localhost:9150 https://check.torproject.org
 ````
 
+## File permission
+````bash
+# Get file permission as octal string
+stat -c "%a %n" *
+````
+
 ## Fail2ban
 ````bash
 #Get Status
