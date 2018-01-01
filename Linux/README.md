@@ -130,7 +130,7 @@ Get back to text mode by typing
 useradd -m -d /home/directory [username]
 
 #Add existing user to group
-usermod -G [group name] [username]
+usermod -a -G [group name] [username]
 
 #Change users default shell
 usermod -s /usr/bin/git-shell [username]
