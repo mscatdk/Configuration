@@ -130,7 +130,7 @@ groupdel [group name]
 
 ### sudoers
 ````bash
-# Edit file
+# Edit file (location: /etc/sudoer)
 visudo
 
 # Allow all without password
