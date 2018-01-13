@@ -10,4 +10,7 @@ openssl s_client -showcerts -connect [hostname]:[port] </dev/null | openssl x509
 
 # Convert pem to cer file
 openssl x509 -outform der -in input.pem -out output.der
+
+# Print content of pem file
+openssl x509 -in certificate.pem -text
 ````

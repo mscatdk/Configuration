@@ -103,26 +103,6 @@ xauth add $DISPLAY . hexkey
 export DISPLAY=localhost:10.0
 ````
 
-## Install Java 8
-Run the following commands:
-````bash
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
-````
-
-## VI
-Get content in hex format
-````bash
-:%!xxd
-````
-
-Get back to text mode by typing
-
-````bash
-:%!xxd -r
-````
-
 ## User and groups
 ### Users
 ````bash
@@ -146,6 +126,38 @@ groupadd [group name]
 
 #Delete group
 groupdel [group name]
+````
+
+### sudoers
+````bash
+# Edit file
+visudo
+
+# Allow all without password
+[username] ALL=(ALL) NOPASSWD: ALL
+
+# Allow list of commands
+[username] ALL=(ALL) NOPASSWD: /bin/kill, /bin/rm
+````
+
+## Install Java 8
+Run the following commands:
+````bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+````
+
+## VI
+Get content in hex format
+````bash
+:%!xxd
+````
+
+Get back to text mode by typing
+
+````bash
+:%!xxd -r
 ````
 
 ## tcpdump
@@ -185,4 +197,15 @@ stat -c "%a %n" *
 ````bash
 #Get Status
 sudo fail2ban-client status ssh
+````
+
+## Certificates
+
+### cert-bot
+````bash
+# Create certificates
+certbot-auto certonly --webroot -w /var/www/example.com -d example.com
+
+# renew certificates
+certbot-auto renew
 ````
