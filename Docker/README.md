@@ -1,27 +1,44 @@
 # Docker
 
 ## Managing Containers
-Remove all stopped containers
-````bash
-docker rm $(docker ps -a -q)
-````
 
-Save and load images as tar files
 ````bash
+
+# Remove all stopped containers
+docker rm $(docker ps -a -q)
+
+# Save and load images as tar files
 docker save [container name] > /path/to/file.tar
 
 docker load /path/to/file.tar
-````
 
-Commit manually updated image
-````bash
+#Commit manually updated image
 docker commit [ID] [NAME]:[TAG]
+
+# Auto restart container
+#Enable
+docker run -d --restart always [NAME]:[TAG]
+
+#Disable
+docker update --restart=no [ID]
 ````
 
 ## Docker registry
-Add certificate e.g. a self signed certificate
+
+### Self-signed certificates
+
+Add certificate e.g. a self-signed certificate
+
 ````bash
 mkdir /etc/docker/certs.d/[hostname]:[port]
 
 cp cert.crt /etc/docker/certs.d/[hostname]:[port]/ca.crt
+````
+
+### Insecure registry
+
+Insecure registries can be allowed by runnig the below command
+
+````bash
+echo '{ "insecure-registries":["[hostname]:[port]"] }' >> /etc/docker/daemon.json
 ````
