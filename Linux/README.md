@@ -199,6 +199,17 @@ stat -c "%a %n" *
 sudo fail2ban-client status ssh
 ````
 
+## tar GZip
+````bash
+# Create Archive
+tar -cvzf archive.tar.gz /path/to/files/*
+
+# Unpacking
+gunzip archive.tar.gz
+
+tar -xvf archive.tar
+````
+
 ## Certificates
 
 ### cert-bot
