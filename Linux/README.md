@@ -210,6 +210,43 @@ gunzip archive.tar.gz
 tar -xvf archive.tar
 ````
 
+## iptables
+
+````bash
+# List existing rules
+iptables -S
+
+# List with line number
+iptables -L --line-numbers
+
+# Allow only 1.2.3.4 to access port 7426
+iptables -A INPUT -p tcp --dport 7426 -s 1.2.3.4 -j ACCEPT
+iptables -A INPUT -p tcp --dport 7426 -j DROP
+
+# Flush all rules
+iptables -F
+
+# Delete by line number
+iptables -D INPUT [line number]
+
+## Full example
+
+# Default policies
+iptables -P OUTPUT ACCEPT
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+
+# Allow INBOUND traffic
+# Lookback traffic
+iptables -A INPUT --in-interface lo -j ACCEPT
+
+# Allow SSH
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# Allow response traffic
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+````
+
 ## Certificates
 
 ### cert-bot
