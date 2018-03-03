@@ -247,9 +247,27 @@ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 ````
 
+## Debian package systems
+
+````bash
+# List files created by a given package
+dpkg-query -L [package name]
+````
+
+## Program Interpreter
+
+The run time linker of a given program can be identified using the following command
+
+````bash
+readelf -l [Executable] | grep "program interpreter"
+````
+
+You may need to install the dependency in case it doesn't exist on your system.
+
 ## Certificates
 
 ### cert-bot
+
 ````bash
 # Create certificates
 certbot-auto certonly --webroot -w /var/www/example.com -d example.com

@@ -13,14 +13,26 @@ docker save [container name] > /path/to/file.tar
 docker load /path/to/file.tar
 
 #Commit manually updated image
-docker commit [ID] [NAME]:[TAG]
+docker commit [image ID] [NAME]:[TAG]
 
 # Auto restart container
 #Enable
 docker run -d --restart always [NAME]:[TAG]
 
 #Disable
-docker update --restart=no [ID]
+docker update --restart=no [container ID]
+
+#Copy file into container
+docker cp file.txt [container ID]:/container/path/to/file
+
+#Enter running container
+docker exec -i -t [container ID] /bin/bash
+
+#Add entries to host file
+docker run --add-host="elastic.msc.local:10.0.0.201" [Image]
+
+#Map file into container
+docker run -v $(pwd)/demo.conf:/root/config/fluent-bit.conf [Image]
 ````
 
 ## Docker registry
