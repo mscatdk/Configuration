@@ -33,6 +33,12 @@ docker run --add-host="elastic.msc.local:10.0.0.201" [Image]
 
 #Map file into container
 docker run -v $(pwd)/demo.conf:/root/config/fluent-bit.conf [Image]
+
+#Clean system for all images and containers not needed
+docker system prune -a
+
+#Remove containers based on pattern
+docker images -a | grep "pattern" | awk '{print $3}' | xargs docker rmi
 ````
 
 ## Docker registry
