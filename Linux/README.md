@@ -352,3 +352,11 @@ certbot-auto certonly --webroot -w /var/www/example.com -d example.com
 # renew certificates
 certbot-auto renew
 ````
+
+## Others
+
+## File tree
+
+````bash
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+````
