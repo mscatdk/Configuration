@@ -52,3 +52,13 @@ source: https://docs.oracle.com/cd/E24329_01/web.1211/e24378/jarbuilder.htm#SACL
 ````bash
 wget -O /tmp/servlet3.war "http://127.0.0.1:8081/nexus/service/local/artifact/maven/redirect?r=snapshots&g=com.msc.web&a=servlet3&v=0.0.1-SNAPSHOT&p=war"
 ````
+
+## Run build without test
+
+````bash
+# Preferred
+mvn clean install -DskipTests
+
+# Skip test and compilation of test
+mvn clean install -Dmaven.test.skip=true
+````
