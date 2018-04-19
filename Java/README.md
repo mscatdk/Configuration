@@ -1,7 +1,9 @@
 # Java
 
-### Add internal Certificate Authority (CA) to Java trust
+## Add internal Certificate Authority (CA) to Java trust
+
 ````bash
+
 # List CA's
 keytool -keystore "$JAVA_HOME\jre\lib\security\cacerts" -storepass changeit -list
 
@@ -18,9 +20,13 @@ The trustStore password is needed to add new trust entries to the keystore and v
 ````
 
 ## Class loader
+
 This Section is dedicated to topics related to the class loader.
-### Logging
+
+## Logging
+
 Class loader logging can be enabled by adding the below JVM option. This will allow you to identify the source for all classes loaded. A log entry will be created each time a class is loaded including origin and full class name. The log will only go to std out.
+
 ````bash
 -verbose:class
 ````
@@ -29,31 +35,45 @@ Class loader logging can be enabled by adding the below JVM option. This will al
 
 ### Build WebLogic full client
 
-Use the following steps to create a wlfullclient.jar file for a JDK 1.7 client application:
+````bash
+# Use the following steps to create a wlfullclient.jar file for a JDK 1.7 client application:
 
-1. Change directories to the server/lib directory.
+# 1. Change directories to the server/lib directory. 
 cd WL_HOME/server/lib
 
-2. Use the following command to create wlfullclient.jar in the server/lib directory:
+# 2. Use the following command to create wlfullclient.jar in the server/lib directory: 
 java -jar wljarbuilder.jar
 
-3. You can now copy and bundle the wlfullclient.jar along with cryptoj.jar with client applications. The wlfullclient.jar and cryptoj.jar must be kept in the same directory as the wlfullcient.jar references cryptoj.jar in its manifest Class-Path.
+# 3. You can now copy and bundle the wlfullclient.jar along with cryptoj.jar with client applications. The wlfullclient.jar and cryptoj.jar must be kept in the same directory as the wlfullcient.jar references cryptoj.jar in its manifest Class-Path.
 
-4. Add the wlfullclient.jar to the client application's classpath.
+# 4. Add the wlfullclient.jar to the client application's classpath.
 
-5. Install jar in local repository:
-mvn install:install-file -Dfile=<path-to-file>
+# 5. Install jar in local repository:
 
-source: https://docs.oracle.com/cd/E24329_01/web.1211/e24378/jarbuilder.htm#SACLT239
+mvn install:install-file -Dfile=[path-to-file]
 
-# Maven
+# source: <https://docs.oracle.com/cd/E24329_01/web.1211/e24378/jarbuilder.htm#SACLT239>
+````
 
-## Download from NEXUS repository
+## JMX remote
+
+Add the following JVM option to allow remote JMX access:
+
+````bash
+-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
+````
+
+## Maven
+
+Maven related topics
+
+### Download from NEXUS repository
+
 ````bash
 wget -O /tmp/servlet3.war "http://127.0.0.1:8081/nexus/service/local/artifact/maven/redirect?r=snapshots&g=com.msc.web&a=servlet3&v=0.0.1-SNAPSHOT&p=war"
 ````
 
-## Run build without test
+### Run build without test
 
 ````bash
 # Preferred
