@@ -38,7 +38,7 @@ htpasswd -D /path/to/file/.htpasswd demo
 ## Bash
 
 ```bash
-# Run for loop X times where x is given by a variable
+# Run for loop X times where X is given by a variable
 for i in $(seq 1 $X); do echo $i; done
 
 # Infinite Loop
@@ -52,6 +52,59 @@ done
 
 ## GDB
 
+Kill java thread using GDB
+
+```bash
+# Run jstack to get thread id
+jstack -l [process id]
+
+# Locate the thread and save the nid. The nid is 0x271a in the below example
+"Thread-0" #8 prio=5 os_prio=0 tid=0x00007fb69c1a0800 nid=0x271a waiting on condition [0x00007fb68418e000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+        at java.lang.Thread.sleep(Native Method)
+        at com.mscatdk.test.MyThread.run(MyThread.java:9)
+        at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+        - None
+
+# Convert the nid to decimal
+echo $((16#[nid number]))
+
+# Attach GDB to the process
+gdb -p [process id]
+
+# Run the below command and use the decimal nid number to identify the thread look for (LWP 10002)
+info threads
+
+# Move into the thread
+thread [gdb thread id]
+
+# Call thread close
+call pthread_exit()
+```
+
+Close socket in running application
+
+```bash
+# Find process id
+netstat -lnp | grep [port]
+
+# Find device
+lsof -np [process id]
+
+# Look for NODE: TCP and name containing the port number
+java    10619 vagrant    6u  IPv6             799322      0t0    TCP *:9999 (LISTEN)
+
+# Map device to file descriptor
+ls -lrt /proc/[process id]/fd
+
+# Attach to process with gdb
+gdb -p [process id]
+
+# call close on file descriptor
+call shutdown([file descriptor],2)
+```
 
 ## Network
 
@@ -252,6 +305,19 @@ strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait 
 
 ## AWK
 
+````bash
+# Print third column
+ls -lrt | awk '{print $3}'
+
+# sum column
+seq 1 20 | awk '{sum += $1} END {print sum}'
+
+# Change seperator
+echo "demo|print me|test" | awk -F '|' '{print $2}'
+
+# Conditional sum
+awk -F '|' '{a[$1] += $3} END{for (i in a) print i, a[i]}' filename.txt
+````
 
 ## cURL
 
