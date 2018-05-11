@@ -39,9 +39,22 @@ docker system prune -a
 
 #Remove containers based on pattern
 docker images -a | grep "pattern" | awk '{print $3}' | xargs docker rmi
+
+# Overridde entrypoint
+docker run --entrypoint "/bin/sh" [Image]
 ````
 
 ## Docker registry
+
+### Protocol
+
+````bash
+# List images
+curl -X GET http://[hostname]:[port]/v2/_catalog
+
+# List tages for a specific image
+curl -X GET http://[hostname]:[port]/v2/[image name]/tags/list
+````
 
 ### Self-signed certificates
 

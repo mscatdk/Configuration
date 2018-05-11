@@ -1,7 +1,11 @@
 # OpenSSL
 
 ### Obtain certificate from server
+
 ````bash
+# Print certificate chain
+openssl s_client -showcerts -connect [hostname]:[port]
+
 # Get pem file
 openssl s_client -connect [hostname]:[port] </dev/null 2>/dev/null | openssl x509 -text
 

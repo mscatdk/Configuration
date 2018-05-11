@@ -7,6 +7,16 @@
 git config core.fileMode false
 ```
 
+## Checkout
+
+```bash
+# Checkout branch
+git checkout -b [branch name]
+
+# Checkout tag
+git checkout tags/[tag name] -b [branch name]
+```
+
 ## Remote
 
 ```bash

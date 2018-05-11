@@ -2,6 +2,19 @@
 
 This page contain Linux related information.
 
+## Commands
+
+```bash
+# Generate a random number between 5 and 10 both included
+ shuf -i 5-10 -n 1
+
+ # Delete all files older than 1 day
+ find /path/to/files* -mtime +1 -exec rm {} \;
+
+ # Print commands in script before they are executed 
+ bash -x [script name]
+```
+
 ## htpasswd
 
 Create file and add user demo
@@ -22,13 +35,23 @@ Remove user demo from file
 htpasswd -D /path/to/file/.htpasswd demo
 ```
 
-## Find command
-
-Delete all files older than 1 day
+## Bash
 
 ```bash
-find /path/to/files* -mtime +1 -exec rm {} \;
+# Run for loop X times where x is given by a variable
+for i in $(seq 1 $X); do echo $i; done
+
+# Infinite Loop
+#!/bin/bash
+while true
+do
+    echo "Press [CTRL+C] to stop.."
+    sleep 1
+done
 ```
+
+## GDB
+
 
 ## Network
 
@@ -226,6 +249,9 @@ strace -p $PID -f -e trace=network -s 10000
 #strace with selected calls
 strace -t -f -e socket,bind,getsockname,getsockopt,connect,epoll_ctl,epoll_wait -p $PID
 ````
+
+## AWK
+
 
 ## cURL
 
