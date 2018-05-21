@@ -11,8 +11,11 @@ This page contain Linux related information.
  # Delete all files older than 1 day
  find /path/to/files* -mtime +1 -exec rm {} \;
 
- # Print commands in script before they are executed 
+ # Print commands in script before they are executed
  bash -x [script name]
+
+ # Use nmap to scan IP range for machines with port 22 open
+ nmap -sV -p [port] 10.0.0.1-255
 ```
 
 ## htpasswd
