@@ -14,7 +14,10 @@ This page contain Linux related information.
  # Print commands in script before they are executed
  bash -x [script name]
 
- # Use nmap to scan IP range for machines with port 22 open
+# Delete all files except the 4 created latest
+ls -t | tail -n +4 | xargs rm --
+
+# Use nmap to scan IP range for machines with port 22 open
  nmap -sV -p [port] 10.0.0.1-255
 ```
 
@@ -294,6 +297,31 @@ tcpdump -i <interface> -s 65535 -w <some-file>
 
 #Read pcap file
 tcpdump -qns 0 -X -r file.pcap
+````
+
+## Wireshark
+
+### Split and Merge
+
+### Process multiple files
+
+### Display filters
+
+````bash
+#Filter on port
+tcp.port == [port]
+
+#Filter on flags e.g. ACK, RST, and FIN
+tcp.flags.ack==1 || tcp.flags.reset==1 || tcp.flags.fin==1
+
+#Search for string
+tcp and frame contains "[pattern]"
+
+#Filter based on IP
+ip.addr == [ip]
+
+#HTTP request method
+http.request.method == "POST"
 ````
 
 ## strace
