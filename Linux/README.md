@@ -8,11 +8,11 @@ This page contain Linux related information.
 # Generate a random number between 5 and 10 both included
  shuf -i 5-10 -n 1
 
- # Delete all files older than 1 day
- find /path/to/files* -mtime +1 -exec rm {} \;
+# Delete all files older than 1 day
+find /path/to/files* -mtime +1 -exec rm {} \;
 
- # Print commands in script before they are executed
- bash -x [script name]
+# Print commands in script before they are executed
+bash -x [script name]
 
 # Delete all files except the 4 created latest
 ls -t | tail -n +4 | xargs rm --
@@ -114,31 +114,23 @@ call shutdown([file descriptor],2)
 
 ## Network
 
-### Gateway
-
-The default gateway can be configured using the following command
-
-```bash
-sudo route add default gw [IP Address] [Adapter]
-```
-
-One example could be sudo route add default gw 192.168.1.254 eth0
-
 ### DNS
 
 The DNS server can be configured by updating /etc/resolv.conf. The file may get overwritten on some systems by the network configuration manager.
 
 ```bash
-nameserver 8.8.8.8
+nameserver [IP Address]
 ```
+
+Example nameserver 8.8.8.8
 
 ## Proxy
 
 The CLI proxy is configured by setting the following environment variables
 
 ```bash
-export http_proxy="http://user:password@host:port"
-export https_proxy="http://user:password@host:port"
+export http_proxy="http://[user]:[password]@[host]:[port]"
+export https_proxy="http://[user]:[password]@[host]:[port]"
 ```
 
 ### Dynamic Socket
@@ -147,8 +139,8 @@ A dynamic socket proxy can be created using SSH as follows:
 
 ````bash
 ssh -D 8080 name@myserver.com
-export http_proxy=socks5://127.0.0.1:8080
-export https_proxy=socks5://127.0.0.1:8080
+export http_proxy=socks5://[host]:[port]
+export https_proxy=socks5://[host]:[port]
 ````
 
 ### Default Gateway
@@ -156,8 +148,17 @@ export https_proxy=socks5://127.0.0.1:8080
 The default gateway is set using one of the following commands:
 
 ````bash
-ip route add default via 192.168.1.254
-route add default gw {IP-ADDRESS} {INTERFACE-NAME}
+ip route add default via [IP Address]
+sudo route add default gw [IP Address] [Adapter]
+````
+
+One example could be sudo route add default gw 192.168.1.254 eth0
+
+### Show routing table
+
+````bash
+route -n
+ip route show
 ````
 
 ## netstat

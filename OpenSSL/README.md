@@ -19,5 +19,5 @@ openssl x509 -outform der -in input.pem -out output.der
 openssl x509 -in certificate.pem -text
 
 # Get issue date and expiration date
-echo | openssl s_client -connect [host]:[port] 2>/dev/null | openssl x509 -noout -dates
+timeout 1 openssl s_client -connect [host]:[port] 2>/dev/null | openssl x509 -noout -dates
 ````
