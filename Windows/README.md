@@ -2,6 +2,15 @@
 
 This page contain Windows related information.
 
+## PowerShell
+
+Send HTTP Request
+
+```bash
+# Send GET request
+Invoke-WebRequest -UseBasicParsing -Uri [URL]
+```
+
 ## CMD
 
 ```bash
