@@ -114,6 +114,18 @@ call shutdown([file descriptor],2)
 
 ## Network
 
+### tc
+
+The following commands can be used to simulate network delays and errors. Please see the full list here: <https://wiki.linuxfoundation.org/networking/netem>
+
+```bash
+# Adds a fixed amount of delay to all packets going out of the local Ethernet
+tc qdisc add dev eth0 root netem delay [delay in ms]ms
+
+# Ramdom delay in the range [base] ms +- [range]ms
+tc qdisc change dev eth0 root netem delay [base]ms [range]ms
+```
+
 ### DNS
 
 The DNS server can be configured by updating /etc/resolv.conf. The file may get overwritten on some systems by the network configuration manager.
