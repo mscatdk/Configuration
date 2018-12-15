@@ -1,4 +1,4 @@
-# Linux
+# Lptabnux
 
 This page contain Linux related information.
 
@@ -155,23 +155,42 @@ export http_proxy=socks5://[host]:[port]
 export https_proxy=socks5://[host]:[port]
 ````
 
-### Default Gateway
+### Route
+
+#### Default Gateway
 
 The default gateway is set using one of the following commands:
 
 ````bash
 ip route add default via [IP Address]
-sudo route add default gw [IP Address] [Adapter]
+sudo route add default gw [IP Address] [Interface]
 ````
 
 One example could be sudo route add default gw 192.168.1.254 eth0
 
-### Show routing table
+#### Show routing table
 
 ````bash
 route -n
 ip route show
 ````
+
+#### Add and remove static route
+
+````bash
+sudo route add [IP Address] gw [Gateway IP] [Interface]
+sudo route del [IP Address] gw [Gateway IP] [Interface]
+````
+
+#### Display the route to a given IP
+
+````bash
+ip route get [IP Address]
+ip route get [IP Address] from [Source IP]
+# You may need to install the traceroute package to run the following command
+traceroute [IP Address]
+````
+
 
 ## netstat
 
@@ -427,10 +446,18 @@ iptables -P FORWARD DROP
 iptables -A INPUT --in-interface lo -j ACCEPT
 
 # Allow SSH
-iptables -A INPUT -p tcp --dport 2*2 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 
 # Allow response traffic
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Redirect from one port to another
+iptables -t nat -A PREROUTING -p tcp --dport [Source port] -j REDIRECT --to-ports [target port]
+
+# Forward traffic assuming no nat table rules for chain PREROUTING and POSTROUTING.
+echo "1" > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A PREROUTING -s [Source IPs] -p tcp --dport [Source port] -j DNAT --to-destination [Target IP]:[Target port]
+sudo iptables -t nat -A POSTROUTING -p tcp -d [Target IP] --dport [Target port] -j SNAT --to-source [machine ip on source network]
 ````
 
 ## Debian package systems
