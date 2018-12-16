@@ -463,6 +463,19 @@ iptables -t nat -A PREROUTING -s [Source IPs] -p tcp --dport [Source port] -j DN
 sudo iptables -t nat -A POSTROUTING -p tcp -d [Target IP] --dport [Target port] -j SNAT --to-source [machine ip on source network]
 ````
 
+### iptables-save
+
+````bash
+# install package
+apt-get install iptables-persistent
+
+# Save iptable content IPv4
+iptables-save > /etc/iptables/rules.v4
+
+# Restore iptable IPv4
+iptables-restore < /etc/iptables/rules.v4
+````
+
 ## Debian package systems
 
 ````bash
