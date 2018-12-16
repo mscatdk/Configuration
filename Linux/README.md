@@ -399,8 +399,11 @@ stat -c "%a %n" *
 ## Fail2ban
 
 ````bash
-#Get Status
-sudo fail2ban-client status ssh
+#Get Status for jail e.g. ssh
+sudo fail2ban-client status [JAIL]
+
+# unban ip
+sudo fail2ban-client set [JAIL] unbanip [IP address]
 ````
 
 ## tar GZip
