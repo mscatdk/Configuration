@@ -1,4 +1,4 @@
-# Lptabnux
+# Linux
 
 This page contain Linux related information.
 
@@ -43,16 +43,35 @@ htpasswd -D /path/to/file/.htpasswd demo
 
 ## Bash
 
+Run for loop X times where X is given by a variable
+
 ```bash
+#!/bin/bash
+
 # Run for loop X times where X is given by a variable
 for i in $(seq 1 $X); do echo $i; done
+```
 
-# Infinite Loop
+Infinite loop
+
+```bash
 #!/bin/bash
 while true
 do
     echo "Press [CTRL+C] to stop.."
     sleep 1
+done
+```
+
+Execute command for each line in a text file
+
+```bash
+# The file name must be provided as the first argument
+#!/bin/bash
+
+cat $1 | while read in
+do
+     echo "$in"​
 done
 ```
 
