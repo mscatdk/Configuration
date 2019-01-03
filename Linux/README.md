@@ -19,6 +19,9 @@ ls -t | tail -n +4 | xargs rm --
 
 # Use nmap to scan IP range for machines with port 22 open
  nmap -sV -p [port] 10.0.0.1-255
+
+# Check if a file is using CRLF line endings by counting the number of CRLF entries
+grep -U $'\x0D' $in | wc -l
 ```
 
 ## htpasswd
@@ -73,6 +76,67 @@ cat $1 | while read in
 do
      echo "$in"​
 done
+```
+
+If statement
+
+```bash
+#!/bin/bash
+
+if [ $foo -gt 3 ]
+then
+     [command]
+fi
+```
+
+### sed command
+
+The file data.xml contain
+
+```xml
+<note>
+     <to>Tove</to>
+     <from>Jani</from>
+     <heading>
+          <h1>20px</h1>
+          <h2>36px</h2>
+     </heading>
+     <body>
+          <master>m1</master>
+          <slave>s1</slave>
+     </body>
+     <body>
+          <master>m2</master>
+          <slave>s2</slave>
+     </body>
+</note>
+```
+
+```bash
+# Remove tag without knowing the value
+sed -i '/<from>.*<\/from>/d' data.xml
+
+# Remove text between two markers
+sed -i '/<heading>/,/<\/heading>/d' data.xml
+
+# Replace text placed on two lines
+sed -i '/<body>.*/{N; s/<body>.*<master>m1<\/master>/<body>\n\t<master>test<\/master>/g}' data.xml
+```
+
+The file will contain the following post executing the above commands
+
+```xml
+<note>
+     <to>Tove</to>
+     <body>
+          <master>test</master>
+          <slave>s1</slave>
+     </body>
+     <body>
+          <master>m2</master>
+          <slave>s2</slave>
+     </body>
+</note>
 ```
 
 ## GDB
