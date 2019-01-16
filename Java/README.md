@@ -63,6 +63,12 @@ Add the following JVM option to allow remote JMX access:
 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
 ````
 
+## Heap dump
+
+````bash
+jmap -dump:live,format=b,file=[File path] [Java PID]​
+````
+
 ## Maven
 
 Maven related topics

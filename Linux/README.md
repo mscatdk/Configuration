@@ -307,6 +307,16 @@ Now start the rng-tools daemon:
 
 ## SSH
 
+### Run multiple commands on remote server
+
+````bash
+ssh host /bin/bash << EOF
+[command 1]
+[command 2]
+[command 3]
+EOF
+````
+
 ### SSH private key authentication
 
 Create the SSH public and private key pair using the command on the client:
