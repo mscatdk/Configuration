@@ -307,6 +307,32 @@ Now start the rng-tools daemon:
 
 ## SSH
 
+### Convert Putty keypair (ppk) to SSH agent keypair
+
+1. Run puttygen [ppk key file] -O private-openssh -o id_dsa
+2. Go to Conversions->Export OpenSSH
+
+### Using a specific keyfile for a specific hostname
+
+Add the following to ~/.ssh/config
+
+````bash
+Host host1
+  HostName <hostname_or_ip>
+  IdentityFile ~/.ssh/identity_file1
+
+Host Host2
+  HostName <hostname_or_ip2>
+  User differentusername
+  IdentityFile ~/.ssh/identity_file2
+````
+
+You can alternatively provide the private key using the -i option.
+
+````bash
+ssh [hostname] -i [key path]
+````
+
 ### Run multiple commands on remote server
 
 ````bash
