@@ -89,6 +89,32 @@ then
 fi
 ```
 
+### Date manipulation
+
+```bash
+# Current date + 10 days
+date -d "+10 days"
+
+# Given date + 10 days
+todate=$(date -d 2019-02-01+10days)
+
+# compare dates
+todate=$(date -d 2019-02-01 +%s)
+cond=$(date -d 2018-12-19 +%s)
+
+if [ $todate -ge $cond ];
+then
+    echo larger
+fi
+```
+
+### Log files
+
+```bash
+# Rotate a log file and keep the 7 latest version without compression
+savelog -l -n -c 7 [log file path]
+```
+
 ### sed command
 
 The file data.xml contain
