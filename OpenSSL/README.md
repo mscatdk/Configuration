@@ -1,6 +1,6 @@
 # OpenSSL
 
-### Obtain certificate from server
+## Obtain certificate from server
 
 ````bash
 # Print certificate chain
@@ -20,4 +20,10 @@ openssl x509 -in certificate.pem -text
 
 # Get issue date and expiration date
 timeout 1 openssl s_client -connect [host]:[port] 2>/dev/null | openssl x509 -noout -dates
+
+# Add passphase to private key
+openssl rsa -aes256 -in [private key filename] -out [encrypted private key filename]
+
+# Remove passphase from private key
+openssl rsa -in [encrypted private key filename] -out [private key filename]
 ````
