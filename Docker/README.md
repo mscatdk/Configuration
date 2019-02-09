@@ -42,6 +42,9 @@ docker images -a | grep "pattern" | awk '{print $3}' | xargs docker rmi
 
 # Overridde entrypoint
 docker run --entrypoint "/bin/sh" [Image]
+
+# Run local script inside container
+docker run -it --rm -v $(pwd):/script [Image] /script/[script name]
 ````
 
 ## Docker registry

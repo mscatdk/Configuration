@@ -89,6 +89,18 @@ then
 fi
 ```
 
+Fail on first command returning a non-zero return code
+```bash
+#!/bin/bash
+
+set -e
+[command 1]
+[command 2]
+[command 3]
+[command 4]
+set +e
+```
+
 ### Date manipulation
 
 ```bash
