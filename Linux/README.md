@@ -159,6 +159,9 @@ sed -i '/<heading>/,/<\/heading>/d' data.xml
 
 # Replace text placed on two lines
 sed -i '/<body>.*/{N; s/<body>.*<master>m1<\/master>/<body>\n\t<master>test<\/master>/g}' data.xml
+
+# Return only the file between <demo> and </demo> (Including both tags)
+sed -n '/<demo*/,/<\/demo>/p' [path to file]
 ```
 
 The file will contain the following post executing the above commands
