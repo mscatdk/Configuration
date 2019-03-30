@@ -47,6 +47,23 @@ docker run --entrypoint "/bin/sh" [Image]
 docker run -it --rm -v $(pwd):/script [Image] /script/[script name]
 ````
 
+## Docker Manifest
+
+````bash
+# Create and push amd64 image
+docker build . --tag mscatdk/openvpn-amd64:latest
+docker push mscatdk/openvpn-amd64:latest
+
+# Create and push armv6 image
+docker build . --tag mscatdk/openvpn-armv6:latest
+docker push mscatdk/openvpn-armv6:latest
+
+# Create and push Manifest
+docker manifest create mscatdk/openvpn:latest mscatdk/openvpn-amd64:latest mscatdk/openvpn-armv6:latest
+docker manifest push mscatdk/openvpn:latest
+docker manifest inspect mscatdk/openvpn
+````
+
 ## Docker registry
 
 ### Protocol
