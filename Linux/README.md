@@ -491,6 +491,28 @@ tcpdump -i <interface> -s 65535 -w <some-file>
 tcpdump -qns 0 -X -r file.pcap
 ````
 
+## mitmproxy
+
+mitmproxy is your swiss-army knife for debugging, testing, privacy measurements, and penetration testing.
+
+````bash
+# Install
+apt-get install mitmproxy
+
+# Run mitmproxy
+mitmproxy
+
+# Press q to exit
+
+# The mitmproxy root CA certificate is located here
+cat ~/.mitmproxy/mitmproxy-ca-cert.cer
+
+# Run mitmproxy
+mitmproxy
+
+# Update the client e.g. Firefox to use the proxy and trust the root CA
+````
+
 ## Wireshark
 
 ### Split and Merge
