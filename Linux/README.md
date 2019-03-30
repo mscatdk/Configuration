@@ -721,3 +721,15 @@ certbot-auto renew
 ````bash
 ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
 ````
+
+## Alpine
+
+### Install software
+
+````bash
+# Install bash
+apk add bash
+
+# Install latest version from specific repository
+apk add --update bash --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
+````
