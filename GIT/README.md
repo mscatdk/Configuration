@@ -17,6 +17,16 @@ git checkout -b [branch name]
 git checkout tags/[tag name] -b [branch name]
 ```
 
+## Tag
+
+```bash
+# Create tag
+git tag [tag name]
+
+# Push tag to remote
+git push origin --tags
+```
+
 ## Remote
 
 ```bash
