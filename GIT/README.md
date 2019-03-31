@@ -17,6 +17,22 @@ git checkout -b [branch name]
 git checkout tags/[tag name] -b [branch name]
 ```
 
+## branch
+
+```bash
+# Create tag from branch
+git branch branchname [sha1-of-commit]
+
+# Delete local branch
+git branch -d [branch_name]
+
+# Force delete local branch
+git branch -D [branch_name]
+
+# Delete remote branch
+git push [remote_name] --delete [branch_name]
+```
+
 ## Tag
 
 ```bash
