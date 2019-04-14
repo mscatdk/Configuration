@@ -46,6 +46,14 @@ htpasswd -D /path/to/file/.htpasswd demo
 
 ## Bash
 
+Check syntax
+
+```bash
+sudo apt-get install -y shellcheck
+
+shellcheck [filename]
+```
+
 Run for loop X times where X is given by a variable
 
 ```bash
