@@ -73,6 +73,16 @@ jmap -dump:live,format=b,file=[File path] [Java PID]​
 
 Maven related topics
 
+### Create simpel project using a template
+
+````bash
+mvn archetype:generate 
+	-DgroupId=[project group id]
+	-DartifactId=[project name]
+	-DarchetypeArtifactId=maven-archetype-quickstart 
+	-DinteractiveMode=false
+````
+
 ### Download from NEXUS repository
 
 ````bash
