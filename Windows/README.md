@@ -6,51 +6,51 @@ This page contain Windows related information.
 
 Send HTTP Request
 
-```bash
+```POWERSHELL
 # Send GET request
 Invoke-WebRequest -UseBasicParsing -Uri [URL]
 ```
 
 ## CMD
 
-```bash
-# List sharing permissions for a folder
+```CMD
+REM List sharing permissions for a folder
 icacls [file name]
 ```
 
-## List all open ports
+### List all open ports
 
 Must be run as administrator
 
-```bash
+```CMD
 netstat -a -b
 ```
 
 Find PID associated with a given open port (here port 80)
 
-```bash
+```CMD
 netstat -ano | find "80"
 ```
 
-## Processes
+### Processes
 
 List running processes with PID
 
-```bash
+```CMD
 Tasklist /svc /fo list
 ```
 
 Kill a process (here the process with PID 123)
 
-```bash
+```CMD
 taskkill /F /PID 123
 ```
 
-## DNS
+### DNS
 
 Clear DNS cache
 
-```bash
+```CMD
 ipconfig /flushdns
 ```
 
@@ -68,3 +68,9 @@ ipconfig /flushdns
 
 wildcard search can be done using the tool
 "C:\Windows\System32\rundll32.exe" dsquery.dll,OpenQueryWindow
+
+## List all saved passwords
+
+````CMD
+rundll32.exe keymgr.dll,KRShowKeyMgr
+````
