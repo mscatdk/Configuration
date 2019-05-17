@@ -741,3 +741,13 @@ apk add bash
 # Install latest version from specific repository
 apk add --update bash --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
 ````
+
+### User and Groups
+
+````bash
+# Create group
+addgroup -S [Group name]
+
+# Create user
+adduser -S [user name] -G [group name]
+````

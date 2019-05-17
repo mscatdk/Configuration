@@ -93,3 +93,10 @@ Insecure registries can be allowed by runnig the below command
 ````bash
 echo '{ "insecure-registries":["[hostname]:[port]"] }' >> /etc/docker/daemon.json
 ````
+
+## Docker build
+
+````bash
+# make sure root login is disabled
+RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
+````
