@@ -258,6 +258,75 @@ tc qdisc add dev eth0 root netem delay [delay in ms]ms
 tc qdisc change dev eth0 root netem delay [base]ms [range]ms
 ```
 
+### SimpelHTTPServer
+
+```bash
+# Serve files from current directory
+python -m SimpleHTTPServer [port]
+```
+
+### ngrep
+
+```bash
+# Install ngrep
+sudo apt-get install ngrep
+
+# Listen for HTTP GET and POST on port [port]
+ngrep -l -q -i "^GET |^POST " tcp and port [port]
+```
+
+#### HTTPie
+
+```bash
+# Install HTTPie
+sudo apt-get install httpie
+# or
+brew install httpie
+
+# HTTP GET Request
+http GET google.com
+```
+
+#### ipcalc
+
+```bash
+# Convert cidr notation to ip range
+ipcalc [cidr]
+```
+
+#### nsenter
+
+```bash
+# Create a docker contianer with a process listning on localhost
+sudo docker run --rm alpine nc -l 127.0.0.1 -p 5000
+
+# Obtain container pid
+sudo docker inspect -f '{{.State.Pid}}' [container id]
+
+# Enter the network namespace (-m can be added to enter the filesystem)
+sudo nsenter -t [docker pid] -n /bin/sh
+
+# Validate
+echo "validate" | nc -v 127.0.0.1 5000
+```
+
+#### arp
+
+```bash
+# Show ARP table
+arp
+```
+
+#### p0f
+
+```bash
+# Installation
+sudo apt-get install p0f
+
+# Log connections + OS
+sudo p0f -i [interface] -p -o /tmp/p0f.log
+```
+
 ### DNS
 
 The DNS server can be configured by updating /etc/resolv.conf. The file may get overwritten on some systems by the network configuration manager.
@@ -268,7 +337,7 @@ nameserver [IP Address]
 
 Example nameserver 8.8.8.8
 
-## Proxy
+### Proxy
 
 The CLI proxy is configured by setting the following environment variables
 
@@ -323,8 +392,7 @@ ip route get [IP Address] from [Source IP]
 traceroute [IP Address]
 ````
 
-
-## netstat
+#### netstat
 
 Find process listening on a specific port:
 
