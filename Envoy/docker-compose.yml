@@ -1,0 +1,30 @@
+version: '2'
+services:
+
+   proxy:
+     image: envoyproxy/envoy:latest
+     volumes:
+       - ./envoy.yaml:/etc/envoy/envoy.yaml
+       - ./certs:/etc/envoy/certs
+     expose:
+       - "8000"
+       - "8443"
+       - "9901"
+     ports:
+       - "8000:8000"
+       - "8443:8443"
+       - "9901:9901"
+
+   hellodocker:
+     image: mscatdk/hello.docker:latest
+     expose:
+       - "9090"
+     ports:
+       - "9090:9090"
+
+   helloworld:
+     image: nginx:latest
+     expose:
+       - "8080"
+     ports:
+       - "8080:80"
