@@ -69,6 +69,12 @@ ipconfig /flushdns
 wildcard search can be done using the tool
 "C:\Windows\System32\rundll32.exe" dsquery.dll,OpenQueryWindow
 
+PowerShell
+
+```powershell
+whoami /groups
+```
+
 ## List all saved passwords
 
 ````CMD
