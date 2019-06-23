@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-docker-deployment
+  labels:
+    app: hello-docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-docker
+  template:
+    metadata:
+      labels:
+        app: hello-docker
+    spec:
+      containers:
+      - name: hello-docker
+        image: mscatdk/hello.docker:0.0.2
+        ports:
+        - containerPort: 9090
+        livenessProbe:
+          httpGet:
+            path: "/health"
+            port: 9090
+        readinessProbe:
+          httpGet:
+            path: "/health"
+            port: 9090
+

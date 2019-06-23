@@ -1,0 +1,110 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello-docker-service
+spec:
+  host: hello-docker-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-docker-service
+  labels:
+    app: hello-docker
+spec:
+  ports:
+  - port: 9090
+    targetPort: 9090
+    name: http
+  selector:
+    app: hello-docker
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-docker-deployment-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-docker
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: hello-docker
+        version: v1
+    spec:
+      containers:
+      - name: hello-docker-v1
+        image: mscatdk/hello.docker:0.0.1
+        ports:
+        - containerPort: 9090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-docker-deployment-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-docker
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: hello-docker
+        version: v2
+    spec:
+      containers:
+      - name: hello-docker-v2
+        image: mscatdk/hello.docker:0.0.2
+        ports:
+        - containerPort: 9090
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: hello-docker-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: hello-docker-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - hello-docker-gateway
+  http:
+  - route:
+    - destination:
+        host: hello-docker-service
+        subset: v1
+      weight: 50
+    - destination:
+        host: hello-docker-service
+        subset: v2
+      weight: 50
+

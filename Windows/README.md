@@ -64,10 +64,23 @@ ipconfig /flushdns
     a. for /r %x in (*.pack) do .\bin\unpack200 -r "%x" "%~dx%~px%~nx.jar"
 6. The JDK can now be zip and distributed if needed
 
-## Ad groups
+## Ad information
 
 wildcard search can be done using the tool
 "C:\Windows\System32\rundll32.exe" dsquery.dll,OpenQueryWindow
+
+CMD
+
+```cmd
+net user [user name] /dom
+net group [group name] /dom
+```
+
+PowerShell
+
+```powershell
+whoami /groups
+```
 
 ## List all saved passwords
 
