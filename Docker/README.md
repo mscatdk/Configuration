@@ -26,7 +26,7 @@ docker update --restart=no [container ID]
 docker cp file.txt [container ID]:/container/path/to/file
 
 #Enter running container
-docker exec -i -t [container ID] /bin/bash
+docker exec -it --user [username] [container ID] /bin/bash
 
 #Add entries to host file
 docker run --add-host="elastic.msc.local:10.0.0.201" [Image]
