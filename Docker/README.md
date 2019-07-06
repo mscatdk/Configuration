@@ -47,6 +47,14 @@ docker run --entrypoint "/bin/sh" [Image]
 docker run -it --rm -v $(pwd):/script [Image] /script/[script name]
 ````
 
+## Enable Experimenal
+
+Add the below to your .docker/config.json file
+
+````json
+"experimental": "enabled"
+````
+
 ## Docker Manifest
 
 ````bash
