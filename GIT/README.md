@@ -52,3 +52,9 @@ git remote set-url origin ssh://[user]@[hostname]/[path to repository]
 # List remote URL's
 git remote -v
 ```
+
+## Merge
+
+````bash
+git merge -Xignore-space-change
+````
