@@ -1,5 +1,11 @@
 # Kubernetes
 
+## Enable Auto-Complete
+
+````bash
+source <(kubectl completion bash)
+````
+
 ## Dashboard
 
 Deploy grafana, heapster, influxdb, and kubernetes-dashboard
