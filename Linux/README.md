@@ -808,6 +808,10 @@ apk add bash
 
 # Install latest version from specific repository
 apk add --update bash --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
+
+# Install gcc
+apk add libc-dev
+apk add gcc
 ````
 
 ### User and Groups
@@ -838,4 +842,11 @@ build:
 
 run:
 	docker run -d --rm -p 9090:9090 ${IMAGE}:${TAG}
+````
+
+## ps
+
+````bash
+# Get process group id
+ps xao pid,ppid,pgid,sid,command | head
 ````
