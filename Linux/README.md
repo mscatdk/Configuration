@@ -246,6 +246,13 @@ call shutdown([file descriptor],2)
 
 ## Network
 
+### Bridge
+
+```bash
+# Control whether or not packets traversing the bridge are sent to iptables for processing.
+echo 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+```
+
 ### tc
 
 The following commands can be used to simulate network delays and errors. Please see the full list here: <https://wiki.linuxfoundation.org/networking/netem>
