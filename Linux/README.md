@@ -380,7 +380,7 @@ export https_proxy="http://[user]:[password]@[host]:[port]"
 A dynamic socket proxy can be created using SSH as follows:
 
 ````bash
-ssh -D 8080 name@myserver.com
+ssh -D 8080 -N [user]@[hostname]
 export http_proxy=socks5://[host]:[port]
 export https_proxy=socks5://[host]:[port]
 ````
