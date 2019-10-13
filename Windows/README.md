@@ -68,7 +68,7 @@ certutil -decode [filename] data.txt
 
 ```cmd
 REM Download the URL
-certutil.exe -urlcache -split -f [URL]
+certutil -urlcache -split -f [URL]
 ```
 
 ## Manual install JDK
