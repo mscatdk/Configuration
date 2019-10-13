@@ -54,6 +54,23 @@ Clear DNS cache
 ipconfig /flushdns
 ```
 
+### Base64 encode and decode
+
+```cmd
+REM Base64 encode file
+certutil -encode [filename] tmp.b64 && findstr /v /c:- tmp.b64 > data.b64
+
+REM decode Base64 file 
+certutil -decode [filename] data.txt
+```
+
+### Download file
+
+```cmd
+REM Download the URL
+certutil.exe -urlcache -split -f [URL]
+```
+
 ## Manual install JDK
 
 1. Download JDK installation file from Oracle
