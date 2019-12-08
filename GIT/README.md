@@ -41,6 +41,9 @@ git tag [tag name]
 
 # Push tag to remote
 git push origin --tags
+
+# Delete tag
+git push --delete origin [tag name]
 ```
 
 ## Remote

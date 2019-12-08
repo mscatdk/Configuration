@@ -246,6 +246,13 @@ call shutdown([file descriptor],2)
 
 ## Network
 
+### Bridge
+
+```bash
+# Control whether or not packets traversing the bridge are sent to iptables for processing.
+echo 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+```
+
 ### tc
 
 The following commands can be used to simulate network delays and errors. Please see the full list here: <https://wiki.linuxfoundation.org/networking/netem>
@@ -275,7 +282,7 @@ sudo apt-get install ngrep
 ngrep -l -q -i "^GET |^POST " tcp and port [port]
 ```
 
-#### HTTPie
+### HTTPie
 
 ```bash
 # Install HTTPie
@@ -287,14 +294,14 @@ brew install httpie
 http GET google.com
 ```
 
-#### ipcalc
+### ipcalc
 
 ```bash
 # Convert cidr notation to ip range
 ipcalc [cidr]
 ```
 
-#### nsenter
+### nsenter
 
 ```bash
 # Create a docker contianer with a process listning on localhost
@@ -310,14 +317,14 @@ sudo nsenter -t [docker pid] -n /bin/sh
 echo "validate" | nc -v 127.0.0.1 5000
 ```
 
-#### arp
+### arp
 
 ```bash
 # Show ARP table
 arp
 ```
 
-#### p0f
+### p0f
 
 ```bash
 # Installation
@@ -325,6 +332,28 @@ sudo apt-get install p0f
 
 # Log connections + OS
 sudo p0f -i [interface] -p -o /tmp/p0f.log
+```
+
+### IPVS Based load balancer
+
+```bash
+# Installation
+sudo apt-get install ipvsadm
+
+# Create round robin tcp load balancing service
+sudo ipvsadm -A -t [LB ip]:[LB port] -s rr
+
+# List services
+sudo ipvsadm -l -n
+
+# Add hosts to the service
+sudo ipvsadm -a -t [LB ip]:[LB port] -r [service ip] -m
+
+# You can now test the load balancer (assuming HTTP service)
+curl [LB ip]:[LB port]
+
+# Delete the load balancing service
+sudo ipvsadm -D -t [LB ip]:[LB port]
 ```
 
 ### DNS
@@ -351,7 +380,7 @@ export https_proxy="http://[user]:[password]@[host]:[port]"
 A dynamic socket proxy can be created using SSH as follows:
 
 ````bash
-ssh -D 8080 name@myserver.com
+ssh -D 8080 -N [user]@[hostname]
 export http_proxy=socks5://[host]:[port]
 export https_proxy=socks5://[host]:[port]
 ````
