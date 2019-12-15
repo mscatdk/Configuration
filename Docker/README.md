@@ -34,7 +34,10 @@ docker run --add-host="elastic.msc.local:10.0.0.201" [Image]
 #Map file into container
 docker run -v $(pwd)/demo.conf:/root/config/fluent-bit.conf [Image]
 
-#Clean system for all images and containers not needed
+# Clean up any resources (images, containers, volumes, and networks) that are dangling (not associated with a container)
+docker system prune -a
+
+# Remove any stopped containers and all unused images (not just dangling images)
 docker system prune -a
 
 #Remove containers based on pattern

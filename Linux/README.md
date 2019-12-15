@@ -879,3 +879,10 @@ run:
 # Get process group id
 ps xao pid,ppid,pgid,sid,command | head
 ````
+
+## Alternatives
+
+````bash
+# Install the maven alternative
+update-alternatives --install /usr/bin/mvn mvn /opt/maven/apache-maven-3.5.0/bin/mvn 100
+````
