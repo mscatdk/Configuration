@@ -873,6 +873,13 @@ run:
 	docker run -d --rm -p 9090:9090 ${IMAGE}:${TAG}
 ````
 
+## gcc
+
+````bash
+# Statically link
+gcc -static src.c obj.o -o prog
+````bash
+
 ## ps
 
 ````bash
