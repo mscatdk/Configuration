@@ -112,6 +112,8 @@ echo '{ "insecure-registries":["[hostname]:[port]"] }' >> /etc/docker/daemon.jso
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 ````
 
+## QEMU
+
 ````bash
 # Install the qemu
 sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support
@@ -127,10 +129,13 @@ docker run -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static --rm -ti arm32v7
 # Copy qemu-arm-static into the same folder as the Dockerfile
 cp /usr/bin/qemu-arm-static .
 
-# Add the below command to your docker file
+# Add the below command to your docker file (See next Section)
 COPY qemu-arm-static /usr/bin
+````
 
-# The following is a simple example
+### QEMU Dockerfile Example
+
+````Dockerfile
 FROM arm32v7/alpine
 
 COPY qemu-arm-static /usr/bin
