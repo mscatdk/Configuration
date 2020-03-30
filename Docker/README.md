@@ -111,3 +111,31 @@ echo '{ "insecure-registries":["[hostname]:[port]"] }' >> /etc/docker/daemon.jso
 # make sure root login is disabled
 RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 ````
+
+````bash
+# Install the qemu
+sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support
+
+# Enable qumu for all arm (arm32V6) binaries. The below command must be run for all architectures you would like to run.
+update-binfmts --enable qemu-arm
+update-binfmts --display qemu-arm
+
+# ARM containers can now be run as follows
+docker run -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static --rm -ti arm32v7/alpine uname -a
+
+# ARM containers can be build on x86 or AMD64 as follows
+# Copy qemu-arm-static into the same folder as the Dockerfile
+cp /usr/bin/qemu-arm-static .
+
+# Add the below command to your docker file
+COPY qemu-arm-static /usr/bin
+
+# The following is a simple example
+FROM arm32v7/alpine
+
+COPY qemu-arm-static /usr/bin
+
+RUN apk update && apk add htop
+
+CMD ["htop"]
+````
