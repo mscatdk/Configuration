@@ -7,10 +7,11 @@
 # Remove all stopped containers
 docker rm $(docker ps -a -q)
 
-# Save and load images as tar files
+# Save image to file
 docker save [container name] > /path/to/file.tar
 
-docker load /path/to/file.tar
+# Load image from tar file
+cat /path/to/file.tar | docker load
 
 #Commit manually updated image
 docker commit [image ID] [NAME]:[TAG]
