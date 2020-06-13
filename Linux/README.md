@@ -451,6 +451,24 @@ Now start the rng-tools daemon:
 /etc/init.d/rng-tools start
 ````
 
+## Mounts
+
+### Virtual mount
+
+````bash
+mkdir -p /quota
+
+mkdir -p /usr/disk-img
+
+# Create 20M file (disk image)
+dd if=/dev/zero of=/usr/disk-img/disk-quota.ext3 count=40960
+# Format the image as an ext3 filesystem
+/sbin/mkfs -t ext3 -q /usr/disk-img/disk-quota.ext3 -F
+
+# Mount the filesystem
+mount -o loop,rw,usrquota,grpquota /usr/disk-img/disk-quota.ext3 /quota
+````
+
 ## SSH
 
 ### Convert Putty keypair (ppk) to SSH agent keypair
