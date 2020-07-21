@@ -905,6 +905,29 @@ gcc -static src.c obj.o -o prog
 ps xao pid,ppid,pgid,sid,command | head
 ````
 
+## Avoid adding command to history
+
+````bash
+# Ensure all command executed with a space in front aren't written to history
+export HISTCONTROL=ignorespace
+# Add a space to exclude the command from history
+ echo <secret>
+````
+
+## Enter password
+
+````bash
+# The following will work for bash
+read -s PASSWORD
+echo $PASSWORD
+
+# General approach
+stty_orig=$(stty -g)
+stty -echo
+read password
+stty $stty_orig
+````
+
 ## Alternatives
 
 ````bash

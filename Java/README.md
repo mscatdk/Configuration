@@ -94,3 +94,23 @@ mvn clean install -DskipTests
 # Skip test and compilation of test
 mvn clean install -Dmaven.test.skip=true
 ````
+
+### Encrypt passwords in settings.xml
+
+````bash
+# Encrypt master password
+mvn --encrypt-master-password <password>
+````
+
+Create the file ${user.home}/.m2/settings-security.xml with the content
+
+````xml
+<settingsSecurity>
+  <master>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}</master>
+</settingsSecurity>
+````
+
+````bash
+# Encrypt password
+mvn --encrypt-password <password>
+````
