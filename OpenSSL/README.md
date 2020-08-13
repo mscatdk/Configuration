@@ -27,3 +27,10 @@ openssl rsa -aes256 -in [private key filename] -out [encrypted private key filen
 # Remove passphase from private key
 openssl rsa -in [encrypted private key filename] -out [private key filename]
 ````
+
+## Encrypt String using password
+
+````bash
+echo DEMO | openssl enc -aes-128-cbc -a -salt -pass pass:My_password
+echo U2FsdGVkX1/de+pcqNA5IRrCJDDE3gQu69tOM8sdEGE= | openssl enc -aes-128-cbc -a -d -salt -pass pass:My_password
+````
