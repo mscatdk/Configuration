@@ -44,6 +44,11 @@ Remove user demo from file
 htpasswd -D /path/to/file/.htpasswd demo
 ```
 
+## Check if port is open
+```bash
+(echo >/dev/tcp/{host}/{port}) &>/dev/null && echo "open" || echo "close"
+```
+
 ## Bash
 
 Check syntax
