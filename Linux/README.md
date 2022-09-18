@@ -22,6 +22,9 @@ ls -t | tail -n +4 | xargs rm --
 
 # Check if a file is using CRLF line endings by counting the number of CRLF entries
 grep -U $'\x0D' $in | wc -l
+
+# Validate if port is open on remote server
+nc -zvw10 [hostname] [port]
 ```
 
 ## htpasswd
