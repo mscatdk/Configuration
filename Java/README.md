@@ -114,3 +114,9 @@ Create the file ${user.home}/.m2/settings-security.xml with the content
 # Encrypt password
 mvn --encrypt-password <password>
 ````
+
+## Kerberos
+
+````bash
+JVM_OPTS="-Dsun.security.krb5.debug=true -Dsun.security.jgss.debug=true -Dsun.security.spnego.debug=true"
+````
